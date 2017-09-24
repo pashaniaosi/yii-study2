@@ -29,22 +29,24 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => Yii::t('common', 'Blog'),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+    $navLeft=[
+        ['label' => Yii::t('yii', 'Home'), 'url' => ['/site/index']],
+//        ['label' => Yii::t('common', 'About'), 'url' => ['/site/about']],
+//        ['label' => Yii::t('common', 'Contact'), 'url' => ['/site/contact']],
+        ['label' => Yii::t('common', 'Post'), 'url' => ['/post/index']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $navRight[] = ['label' => Yii::t('common', 'Signup'), 'url' => ['/site/signup']];
+        $navRight[] = ['label' => Yii::t('common', 'Login'), 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
+//        之后要添加登录头像
+        $navRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
@@ -54,8 +56,14 @@ AppAsset::register($this);
             . '</li>';
     }
     echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $navLeft,
+    ]);
+    echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
+//        不过滤代码标签
+        'encodeLabels' => false,
+        'items' => $navRight,
     ]);
     NavBar::end();
     ?>

@@ -17,7 +17,7 @@ return [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'common\models\Admin',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
@@ -37,14 +37,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+//            'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,// 开启url美化
+            'showScriptName' => false,// 去除入口脚本文件, 对于Apache服务器需要将rewrite模板开启
             'rules' => [
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
