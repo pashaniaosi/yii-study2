@@ -18,4 +18,10 @@ return [
     'RememberMe' => '记住我',
     'RePassword' => '重复密码',
     'VerifyCode' => '验证码',
+    'ID' => '编号id',
+    'Tag' => '标签id',
+    'Cat ID' => '类别id',
+    'Label Img' => '图标',
+    'Title' => '标题',
+    'Content' => '内容',
 ];

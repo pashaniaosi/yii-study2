@@ -41,10 +41,20 @@ AppAsset::register($this);
 //        ['label' => Yii::t('common', 'Contact'), 'url' => ['/site/contact']],
         ['label' => Yii::t('common', 'Post'), 'url' => ['/post/index']],
     ];
+//    $navRight = [];
     if (Yii::$app->user->isGuest) {
         $navRight[] = ['label' => Yii::t('common', 'Signup'), 'url' => ['/site/signup']];
         $navRight[] = ['label' => Yii::t('common', 'Login'), 'url' => ['/site/login']];
+//        array_push($navRight,['label' => Yii::t('common', 'Login'), 'url' => ['/site/login']],['label' => Yii::t('common', 'Signup', 'url' => ['/site/signup']]);
     } else {
+//        array_push($navRight,['label' => '<img src = "'.Yii::$app->params['avatar']['defaultImage'].'"alt="'. Yii::$app->user->identity->username.'"> ',
+//                'linkOptions' => ['class' => 'avatar'],
+//                'items' => [
+//                    ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
+//                    ['label' => '个人中心'],
+//                ],
+//            ]
+//        );
 //        之后要添加登录头像
         $navRight[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
@@ -54,6 +64,7 @@ AppAsset::register($this);
             )
             . Html::endForm()
             . '</li>';
+
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
